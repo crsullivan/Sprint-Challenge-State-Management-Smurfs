@@ -1,11 +1,17 @@
 import {LOAD_DATA, LOAD_SUCCESS, LOAD_FAILURE, SAVE_SMURF, SAVE_SUCCESS, SAVE_FAILURE} from '../actions/index'
 
 const initialState = {
-    smurfData: [],
+    smurfData: [
+        {
+            name: '',
+            age: 0,
+            height: '',
+            id: 0
+        }
+    ],
     loading: false,
-    posting: false,
     error: ''
-};
+}
 
 const reducer = (state=initialState, action) => {
     switch(action.type) {
@@ -31,18 +37,20 @@ const reducer = (state=initialState, action) => {
         case SAVE_SMURF:
             return {
                 ...state,
-                posting: true
+                loading: true,
+                error: ''
             }
         case SAVE_SUCCESS: 
             return {
                 ...state,
-                posting: false,
-                smurfData: [...state.smurfData, action.payload]
+                loading: false,
+                smurfData: action.payload,
+                error: ''
             }
         case SAVE_FAILURE:
             return {
                 ...state,
-                posting: false,
+                loading: false,
                 error: action.payload
             }
         default:

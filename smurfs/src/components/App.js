@@ -7,19 +7,6 @@ import axios from 'axios';
 
 const App = (props) => {
   
-  const handleSubmit = event => {
-    event.preventDefault();
-    axios
-    .delete(`http://localhost:3333/smurfs/${props.smurfData.id}`)
-    .then( result => 
-      window.location.reload())
-      .catch(err => console.log(err))
-
-        
-        
-}
-
-  
   useEffect (() => {
     props.fetchData();
 }, [])
@@ -40,12 +27,10 @@ if(props.loading) {
         <div>
           {props.smurfData.map(data => (
             <>
-              <p>{data.name}</p>
-              <p>{data.age}</p>
+              <h1>{data.name}</h1>
+              <h2>{data.age}</h2>
               <p>{data.height}</p>
-              <form onSubmit={handleSubmit}>
-                <button type='submit'>Banish from this Realm</button>
-              </form>
+              
             </>
           ))}
         </div>

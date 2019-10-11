@@ -20,6 +20,6 @@ export const postData = (smurfInfo) => (dispatch) => {
     dispatch({type: SAVE_SMURF})
     axios
     .post('http://localhost:3333/smurfs', smurfInfo) 
-    .then(res => console.log(res.data))
+    .then(res => dispatch({type: SAVE_SUCCESS, payload: res.data}))
         .catch(err => dispatch({ type: SAVE_FAILURE, payload: err.response}))
 }
